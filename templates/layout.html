@@ -49,9 +49,59 @@
                   font-size: 3.5rem;
                 }
             }
+            #profile-photo {
+                height: 35px;
+                width: 35px;
+                border-radius: 50%;
+            }
         </style>
         <!-- Custom styles for this template -->
         <link href="https://getbootstrap.com/docs/4.2/examples/album/album.css" rel="stylesheet">
+        <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyC9Dbeq4-eH-Y5DP1OYtYqZU5fepLaDN0k",
+            authDomain: "krumholz-202200.firebaseapp.com",
+            databaseURL: "https://krumholz-202200.firebaseio.com",
+            projectId: "krumholz-202200",
+            storageBucket: "krumholz-202200.appspot.com",
+            messagingSenderId: "521601647779"
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script type="text/javascript">
+          initApp = function() {
+            firebase.auth().onAuthStateChanged(function(user) {
+              if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function(accessToken) {
+                  // document.getElementById('sign-in-status').textContent = 'Signed in';
+                  // document.getElementById('sign-in').textContent = 'Sign out';
+                  document.getElementById('profile-photo').src = user.photoURL;
+                });
+              } else {
+                // User is signed out.
+                // document.getElementById('sign-in-status').textContent = 'Signed out';
+                // document.getElementById('sign-in').textContent = 'Sign in';
+                document.getElementById('profile-photo').src = 'null';
+              }
+            }, function(error) {
+              console.log(error);
+            });
+          };
+
+          window.addEventListener('load', function() {
+            initApp()
+          });
+        </script>
     </head>
   <body>
     <header>
@@ -78,6 +128,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2" focusable="false" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
             <strong>Fight Icing</strong>
           </a>
+          <img id="profile-photo" src="">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
