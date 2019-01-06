@@ -1,4 +1,4 @@
 runtime: python37
 
 env_variables:
-    APP_SECRET_KEY: '185bc088e8190d66df28159fae15de82'
+    APP_SECRET_KEY: ''

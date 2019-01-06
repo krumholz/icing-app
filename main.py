@@ -18,9 +18,9 @@ def home():
 def signin():
     return render_template('signin.html')
 
-@app.route("/signedin")
-def signedin():
-    return render_template('signedin.html')
+@app.route("/profile")
+def profile():
+    return render_template('profile.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
