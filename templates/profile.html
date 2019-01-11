@@ -33,10 +33,10 @@
               document.getElementById('profile-email').textContent = email;
               document.getElementById('profile-photo').src = photoURL;
               document.getElementById('profile-userid').textContent = uid;
-              document.getElementById('account-details').textContent = JSON.stringify(user, undefined, 4);
+              // document.getElementById('account-details').textContent = JSON.stringify(user, undefined, 4);
             });
           } else {
-            document.getElementById('account-details').textContent = 'null';
+            // document.getElementById('account-details').textContent = 'null';
           }
         }, function(error) {
           console.log(error);
@@ -60,6 +60,6 @@
     <div id="profile-email"></div>
     <img id="profile-photo" src="">
     <div id="profile-userid"></div>
-    <div><pre id="account-details"></pre></div>
+    <!-- <div><pre id="account-details"></pre></div> -->
   </body>
 </html>
